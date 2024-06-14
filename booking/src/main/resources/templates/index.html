@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Bus Booking System</title>
+	<link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	 <header>
+		<nav th:if=${role}>
+			<a th:href="@{/}">Add Bus</a>
+		</nav>
+		
+		<nav th:unless=${role}>
+					<a th:href="@{/}">Home</a>
+		            <a th:href="@{/user/details}">User Details</a>
+		            <a th:href="@{/user/payments}">Payment Methods</a>
+		            <a th:href="@{/user/bookings}">Booking History</a>
+					<a th:href="@{/logout}">Logout</a>
+		        </nav>
+		
+	</header>
+	<div class="container">
+		<form action="/bus/search" method="post" th:object="${ticket}">
+			<h1>Bus Booking Application</h1><br>
+
+			<div th:if="${param.availableTicketError}">
+				<div class="alert alert-error">
+					Ticket not available!
+				</div>
+			</div>
+							        <label for="fromCityName">From:</label>
+							        <input type="text" id="fromCityName" name="fromCityName"/>
+							        
+							        <label for="toCityName">To</label>
+							        <input type="text" id="toCityName" name="toCityName" />
+							        
+							        <label for="date">Date:</label>
+							        <input type="date" id="date" name="date"/>
+									
+										         
+							        <input type="submit" value="Search Buses">
+							    </form>
+	</div>
+
+
+</body>
+
+</html>

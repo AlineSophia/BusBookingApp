@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Bus Booking System</title>
+	<link th:href="@{/style.css}" rel="stylesheet" />
+</head>
+
+<body>
+	 <header>
+		
+		<nav>
+					<a th:href="@{/}">Home</a>
+		            <a th:href="@{/user/details}">User Details</a>
+		            <a th:href="@{/user/payments}">Payment Methods</a>
+		            <a th:href="@{/user/bookings}">Booking History</a>
+					<a th:href="@{/logout}">Logout</a>
+		        </nav>
+		
+	</header>
+	<div class="container">
+		<form action="/bus/bookTicket" method="post" th:object="${ticket}">
+			<h1>Book Ticket</h1><br>
+			
+			<input type="hidden" id="date"  name="date" th:value="${date}" />
+			<!--th:each="i : ${date}" th:value="${i.id}" th:text="${i.seat}"-->
+			
+			<input type="hidden" id="price"  name="price" th:value="${buses.price}" />
+			<input type="hidden" id="busId"  name="busId" th:value="${buses.id}" />
+			
+				<label for="name">Name:</label>
+				<input type="text" id="name"  name="name"/>
+							        
+				<label for="age">Age</label>
+				<input type="text" id="age"  name="age" />
+							        
+				<label for="gender">Gender:</label>
+				<input type="text" id="gender" name="gender"/>
+									
+				<label for="email">Email:</label>
+				<input type="email" id="email"  name="email"/>
+															        
+				<label for="phoneNumber">Phone Number:</label>
+				<input type="text" id="phoneNumber"  name="phoneNumber" />
+															        
+				<label for="nationality">Nationality:</label>
+				<input type="text" id="nationality" name="nationality"/>
+				
+				<label for="noOfTickets">No Of Tickets:</label>
+				<input type="number" id="noOfTickets" name="noOfTickets"/>
+				
+				<div class="form-group">
+				<label for="seat">Seat Preference:</label>
+				<select id="seatPreference" name="seatPreference">
+												<option value="0">Pick a Seat</option>
+												<option th:each="i : ${seat}" th:value="${i.id}"
+													th:text="${i.seat}">
+												</option>
+											</select>
+				 </div>
+									
+										         
+							        <input type="submit" value="Proceed to Payment">
+							    </form>
+	</div>
+
+
+</body>
+
+</html>

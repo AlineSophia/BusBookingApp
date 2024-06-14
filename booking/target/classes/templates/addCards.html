@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Bus Booking System</title>
+	<link th:href="@{/style.css}" rel="stylesheet" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+				integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+	 <header>
+		
+		<nav>
+					<a th:href="@{/}">Home</a>
+		            <a th:href="@{/user/details}">User Details</a>
+		            <a th:href="@{/user/payments}">Payment Methods</a>
+		            <a th:href="@{/user/bookings}">Booking History</a>
+					<a th:href="@{/logout}">Logout</a>
+		        </nav>
+		
+	</header>
+<div class="container">
+	<form action="/user/addCard" method="post" th:object="${cardDetails}">
+			<h1>Add Card Details</h1>
+								<div th:if="${param.addSuccess}">
+									<div class="alert alert-info">
+										Card Added Successfully!
+									</div>
+								</div>
+				<div class="form-group">
+		        <label for="cardName">Card Name:</label>
+				<select name="cardName" id="cardName">
+				    <option value="Visa">Visa</option>
+				    <option value="MasterCard">MasterCard</option>
+				    <option value="American Express">American Express</option>
+				    <option value="Mastero">Mastero</option>
+					<option value="Rupay">Rupay</option>
+				  </select>
+				  </div>
+				  <div class="form-group">
+		        <!--<input type="text" id="cardName" name="cardName"/>-->
+				<label for="cardType">Card Type:</label>
+				  <input type="radio" id="cardType" name="cardType" value="Debit">
+				  <label for="debit">Debit</label>
+				  <input type="radio" id="cardType" name="cardType" value="Credit">
+				  <label for="credit">Credit</label><br>
+		        <div>
+		        <label for="cardNumber">Card Number:</label>
+		        <input type="text" id="cardNumber" name="cardNumber"/>
+		        
+		        <label for="cvv">CVV</label>
+		        <input type="text" id="cvv" name="cvv" />
+		        
+		        <label for="cardHolderName">Card Holder Name:</label>
+		        <input type="text" id="cardHolderName" name="cardHolderName"/>
+				
+				<label for="expiryDate">Expiry Date:</label>
+				<input type="text" id="expiryDate" name="expiryDate"/>
+					         
+		        <input type="submit" value="Add Card">
+		    </form>
+			
+			
+</div>
+
+</body>
+
+</html>

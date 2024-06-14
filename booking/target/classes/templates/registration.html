@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Patient Management System</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+		integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<!--Success message -->
+				<div th:if="${param.success}">
+					<div class="alert alert-info">
+						Your registration is successfully!
+					</div>
+				</div>
+
+				<h1>Registration</h1>
+				<form th:action="@{/registration}" method="post" th:object="${user}">
+
+					<div class="form-group">
+						<label class="control-label" for="firstName">
+							First Name
+						</label>
+						<input id="firstName" class="form-control" th:field="${user.firstName}" required
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="lastName">
+							Last Name
+						</label>
+						<input id="lastName" class="form-control" th:field="${user.lastName}" required
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="email">
+							Email
+						</label>
+						<input id="email" class="form-control" th:field="${user.email}" required
+							autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<label class="control-label" for="password">
+							Password
+						</label>
+						<input id="password" type="password" class="form-control" th:field="${user.password}" required
+							autofocus="autofocus" />
+					</div>
+					<div class="form-group">
+								<label for="role">Role:</label>
+								  <input type="radio" id="role" name="role" th:field="${user.role}" value="user">
+								  <label for="user">User</label>
+								  <input type="radio" id="role" name="role" th:field="${user.role}" value="travels">
+								  <label for="travels">Travels</label><br>
+						        <div>
+				
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">Register</button>
+						<span>Already registered? <a href="/" th:href="@{/login}">Login here</a></span>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
